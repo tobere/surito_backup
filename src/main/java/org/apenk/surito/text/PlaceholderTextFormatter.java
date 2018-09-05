@@ -20,7 +20,7 @@ package org.apenk.surito.text;
  * TODO Kweny PlaceholderTextFormatter
  *
  * @author Kweny
- * @since TODO version
+ * @since 0.0.1
  */
 public class PlaceholderTextFormatter {
     public static void main(String[] args) {
