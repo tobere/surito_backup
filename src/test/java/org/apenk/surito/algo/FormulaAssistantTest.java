@@ -36,11 +36,21 @@ public class FormulaAssistantTest {
     public void testStreamingAverage() {
         double avg = 0;
         BigDecimal bigAvg = new BigDecimal(0);
+        double sum = 0;
+        int count = 0;
+        BigDecimal bigSum = new BigDecimal(0);
         for (int i = 0; i < 1000; i++) {
             double operand = new Random().nextDouble();
+            sum += operand;
+            bigSum = bigSum.add(new BigDecimal(operand));
+            count ++;
+
             avg = FormulaAssistant.streamingAverage(avg, i, operand);
             bigAvg = FormulaAssistant.streamingAverage(bigAvg, new BigDecimal(i), new BigDecimal(operand), 100, RoundingMode.HALF_UP);
         }
-        assertEquals(null, avg, bigAvg.doubleValue(), 0.000000001);
+        double verifyAvg = sum / count;
+        BigDecimal verifyBigAvg = bigSum.divide(new BigDecimal(count), 100, RoundingMode.HALF_UP);
+        assertEquals(null, verifyAvg, avg, 0.000000001);
+        assertEquals(null, verifyBigAvg.doubleValue(), bigAvg.doubleValue(), 0.0000000000000000001);
     }
 }
