@@ -31,6 +31,18 @@ public class FormulaAssistant {
     private static final BigDecimal BIG_ZERO = new BigDecimal(0);
     private static final BigDecimal BIG_ONE = new BigDecimal(1);
 
+    public static double randomNumber(double min, double max) {
+        return min + (Math.random() * (max - min + 1));
+    }
+
+    public static BigDecimal randomNumber(BigDecimal min, BigDecimal max) {
+        return max.subtract(min).add(BIG_ONE).multiply(new BigDecimal(Math.random())).add(min);
+    }
+
+    public static int calcPageTotalNumber(int recordTotalNumber, int pageSize) {
+        return (recordTotalNumber + pageSize - 1) / pageSize;
+    }
+
 //    public static double average(double... values) {
 //
 //    }
